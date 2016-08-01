@@ -10,6 +10,7 @@
 		9443011F1D4EF1C100B110CF /* SwiftExpression.h in Headers */ = {isa = PBXBuildFile; fileRef = 9443011E1D4EF1C100B110CF /* SwiftExpression.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		944301261D4EF1C100B110CF /* SwiftExpression.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9443011B1D4EF1C100B110CF /* SwiftExpression.framework */; };
 		9443012B1D4EF1C100B110CF /* SwiftExpressionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9443012A1D4EF1C100B110CF /* SwiftExpressionTests.swift */; };
+		944301361D4EF2D700B110CF /* Regex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944301351D4EF2D700B110CF /* Regex.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +30,7 @@
 		944301251D4EF1C100B110CF /* SwiftExpressionTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftExpressionTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9443012A1D4EF1C100B110CF /* SwiftExpressionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftExpressionTests.swift; sourceTree = "<group>"; };
 		9443012C1D4EF1C100B110CF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		944301351D4EF2D700B110CF /* Regex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Regex.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,7 +74,8 @@
 			isa = PBXGroup;
 			children = (
 				9443011E1D4EF1C100B110CF /* SwiftExpression.h */,
-				944301201D4EF1C100B110CF /* Info.plist */,
+				944301371D4EF2E500B110CF /* Model */,
+				944301381D4EF2F000B110CF /* Resources */,
 			);
 			path = SwiftExpression;
 			sourceTree = "<group>";
@@ -84,6 +87,22 @@
 				9443012C1D4EF1C100B110CF /* Info.plist */,
 			);
 			path = SwiftExpressionTests;
+			sourceTree = "<group>";
+		};
+		944301371D4EF2E500B110CF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				944301351D4EF2D700B110CF /* Regex.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		944301381D4EF2F000B110CF /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				944301201D4EF1C100B110CF /* Info.plist */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -194,6 +213,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				944301361D4EF2D700B110CF /* Regex.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -310,6 +330,7 @@
 		944301301D4EF1C100B110CF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -320,12 +341,14 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.joshuaalvarado.SwiftExpression;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		944301311D4EF1C100B110CF /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
