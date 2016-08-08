@@ -51,7 +51,7 @@ public struct Regex {
 
 prefix operator <> { }
 
-prefix func <> (pattern: String) -> Regex {
+prefix func <> (pattern: String) -> Regex? {
     return Regex(pattern: pattern)
 }
 
