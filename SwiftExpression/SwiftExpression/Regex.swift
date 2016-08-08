@@ -56,15 +56,15 @@ prefix func <> (pattern: String) -> Regex? {
 }
 
 extension String {
-    public func match(regex: Regex) -> Regex.Match {
+    public func match(regex: Regex) -> [Regex.Match] {
         return regex.matchWithPattern(self)
     }
     
-    public mutating func replaceMatches(regex: Regex, withString: String) {
-        regex.replaceMatchesInString(&self, replacement: withString)
+    public func replace(regex: Regex, withString: String) -> String {
+        return regex.replaceMatchesInString(self, replacement: withString)
     }
     
-    public func contains(regex: Regex) -> Bool {
-        return true
+    public func search(regex: Regex) -> Int? {
+        return regex.search(self)
     }
 }
