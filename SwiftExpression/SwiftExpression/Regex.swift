@@ -9,6 +9,7 @@
 import Foundation
 
 public struct Regex {
+    public typealias Match = (String, Range<String.Index>)
     
     private var regexPattern: NSRegularExpression
     
@@ -24,28 +25,27 @@ public struct Regex {
         return regexPattern.pattern
     }
     
-    internal func matchWithPattern(str: String) -> Match {
-        let results = pattern.matchesInString(str, options: .ReportCompletion, range: NSRange(location: 0, length: str.startIndex.distanceTo(str.endIndex)))
+    internal func matchWithPattern(str: String) -> [Match] {
+        let results = regexPattern.matchesInString(str, options: .ReportCompletion, range: NSRange(location: 0, length: str.startIndex.distanceTo(str.endIndex)))
         var components = [(String, Range<String.Index>)]()
         results.lazy.forEach {
             let stringRange = str.startIndex.advancedBy($0.range.location)..<str.startIndex.advancedBy($0.range.location + $0.range.length)
             components.append(str.substringWithRange(stringRange), stringRange)
         }
-        return Match(components: components)
+        return components
     }
     
-    internal func replaceMatchesInString(inout str: String, replacement: String) -> Int {
+    internal func replaceMatchesInString(str: String, replacement: String) -> String {
         let replaceString = NSMutableString(string: str)
-        let replaces = pattern.replaceMatchesInString(replaceString, options: .ReportCompletion, range: NSRange(location: 0, length: str.startIndex.distanceTo(str.endIndex)), withTemplate: replacement)
-        str = replaceString as String
-        return replaces
+        regexPattern.replaceMatchesInString(replaceString, options: .ReportCompletion, range: NSRange(location: 0, length: str.startIndex.distanceTo(str.endIndex)), withTemplate: replacement)
+        return replaceString as String
     }
     
-    public struct Match {
-        public var numberOfMatches: Int {
-            return components.count
+    internal func search(str: String) -> Int? {
+        if let result = regexPattern.firstMatchInString(str, options: .ReportCompletion, range: NSRange(location: 0, length: str.startIndex.distanceTo(str.endIndex))) {
+            result.range.location
         }
-        public var components: [(String, Range<String.Index>)]
+        return nil
     }
 }
 
