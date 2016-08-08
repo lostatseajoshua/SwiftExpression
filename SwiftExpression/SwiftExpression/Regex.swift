@@ -21,13 +21,10 @@ public struct Regex {
     }
     
     func toString() -> String {
-        return pattern?.pattern ?? ""
+        return regexPattern.pattern
     }
     
     internal func matchWithPattern(str: String) -> Match {
-        guard let pattern = pattern else {
-            return Match(components: [(String, Range<String.Index>)]())
-        }
         let results = pattern.matchesInString(str, options: .ReportCompletion, range: NSRange(location: 0, length: str.startIndex.distanceTo(str.endIndex)))
         var components = [(String, Range<String.Index>)]()
         results.lazy.forEach {
@@ -38,9 +35,6 @@ public struct Regex {
     }
     
     internal func replaceMatchesInString(inout str: String, replacement: String) -> Int {
-        guard let pattern = pattern else {
-            return 0
-        }
         let replaceString = NSMutableString(string: str)
         let replaces = pattern.replaceMatchesInString(replaceString, options: .ReportCompletion, range: NSRange(location: 0, length: str.startIndex.distanceTo(str.endIndex)), withTemplate: replacement)
         str = replaceString as String
