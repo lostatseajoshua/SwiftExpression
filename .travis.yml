@@ -1,4 +1,4 @@
 language: objective-c
 osx_image: xcode7.3
-script:
-   xctool -project SwiftExpression.xcodeproj -scheme SwiftExpression build -sdk iphonesimulator
+xcode_project: SwiftExpression/SwiftExpression.xcodeproj
+xcode_scheme: SwiftExpression
