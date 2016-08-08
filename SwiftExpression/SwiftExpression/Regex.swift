@@ -9,13 +9,14 @@
 import Foundation
 
 public struct Regex {
-    private var pattern: NSRegularExpression?
     
-    public init(pattern: String) {
+    private var regexPattern: NSRegularExpression
+    
+    public init?(pattern: String) {
         do {
-            self.pattern = try NSRegularExpression(pattern: pattern, options: [])
+            self.regexPattern = try NSRegularExpression(pattern: pattern, options: [])
         } catch {
-            print(error)
+            return nil
         }
     }
     
