@@ -33,4 +33,17 @@ class SwiftExpressionTests: XCTestCase {
         }
     }
     
+    func testPrefixOperator() {
+        if let regex = <>"regex" {
+            XCTAssertEqual(regex.toString(), "regex")
+        } else {
+            assertionFailure("Prefix failed to create Regex")
+        }
+    }
+    
+    func testInfixOperator() {
+        XCTAssertEqual("Hello World" ~= "Hello World", true)
+        XCTAssertNotEqual("Hello World" ~= "hello world", true)
+    }
+    
 }
