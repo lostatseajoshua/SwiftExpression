@@ -9,7 +9,6 @@
 import Foundation
 
 public struct Regex {
-    public typealias Match = (String, Range<String.Index>)
     
     private var regexPattern: NSRegularExpression
     
@@ -25,14 +24,14 @@ public struct Regex {
         return regexPattern.pattern
     }
     
-    internal func matchWithPattern(str: String) -> [Match] {
+    internal func matchWithPattern(str: String) -> Match {
         let results = regexPattern.matchesInString(str, options: .ReportCompletion, range: NSRange(location: 0, length: str.startIndex.distanceTo(str.endIndex)))
         var components = [(String, Range<String.Index>)]()
         results.lazy.forEach {
             let stringRange = str.startIndex.advancedBy($0.range.location)..<str.startIndex.advancedBy($0.range.location + $0.range.length)
             components.append(str.substringWithRange(stringRange), stringRange)
         }
-        return components
+        return Match(components: components)
     }
     
     internal func replaceMatchesInString(str: String, replacement: String) -> String {
@@ -46,6 +45,22 @@ public struct Regex {
             result.range.location
         }
         return nil
+    }
+    
+    public struct Match {
+        let components: [(String, Range<String.Index>)]
+        
+        func subStrings() -> [String] {
+            return components.map {
+                $0.0
+            }
+        }
+        
+        func ranges() -> [Range<String.Index>] {
+            return components.map {
+                $0.1
+            }
+        }
     }
 }
 
@@ -74,7 +89,7 @@ func =~ (input: String, regexPatternStr: String) -> Bool {
 }
 
 extension String {
-    public func match(regex: Regex) -> [Regex.Match] {
+    public func match(regex: Regex) -> Regex.Match {
         return regex.matchWithPattern(self)
     }
     
