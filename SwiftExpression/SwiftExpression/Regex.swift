@@ -64,6 +64,15 @@ func =~ (input: String, regex: Regex) -> Bool {
     return false
 }
 
+func =~ (input: String, regexPatternStr: String) -> Bool {
+    if let regex = Regex(pattern: regexPatternStr) {
+        if let match = regex.search(input) where match > 0 {
+            return true
+        }
+    }
+    return false
+}
+
 extension String {
     public func match(regex: Regex) -> [Regex.Match] {
         return regex.matchWithPattern(self)
