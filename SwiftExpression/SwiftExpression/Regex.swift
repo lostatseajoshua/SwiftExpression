@@ -55,6 +55,15 @@ prefix func <> (pattern: String) -> Regex? {
     return Regex(pattern: pattern)
 }
 
+infix operator =~ {}
+
+func =~ (input: String, regex: Regex) -> Bool {
+    if let match = regex.search(input) where match > 0 {
+        return true
+    }
+    return false
+}
+
 extension String {
     public func match(regex: Regex) -> [Regex.Match] {
         return regex.matchWithPattern(self)
