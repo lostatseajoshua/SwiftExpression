@@ -9,25 +9,23 @@
 import Foundation
 
 public struct Regex {
-    private var pattern: NSRegularExpression?
     
-    public init(pattern: String) {
+    private var regexPattern: NSRegularExpression
+    
+    public init?(pattern: String) {
         do {
-            self.pattern = try NSRegularExpression(pattern: pattern, options: [])
+            self.regexPattern = try NSRegularExpression(pattern: pattern, options: [])
         } catch {
-            print(error)
+            return nil
         }
     }
     
     func toString() -> String {
-        return pattern?.pattern ?? ""
+        return regexPattern.pattern
     }
     
     internal func matchWithPattern(str: String) -> Match {
-        guard let pattern = pattern else {
-            return Match(components: [(String, Range<String.Index>)]())
-        }
-        let results = pattern.matchesInString(str, options: .ReportCompletion, range: NSRange(location: 0, length: str.startIndex.distanceTo(str.endIndex)))
+        let results = regexPattern.matchesInString(str, options: .ReportCompletion, range: NSRange(location: 0, length: str.startIndex.distanceTo(str.endIndex)))
         var components = [(String, Range<String.Index>)]()
         results.lazy.forEach {
             let stringRange = str.startIndex.advancedBy($0.range.location)..<str.startIndex.advancedBy($0.range.location + $0.range.length)
@@ -36,28 +34,58 @@ public struct Regex {
         return Match(components: components)
     }
     
-    internal func replaceMatchesInString(inout str: String, replacement: String) -> Int {
-        guard let pattern = pattern else {
-            return 0
-        }
+    internal func replaceMatchesInString(str: String, replacement: String) -> String {
         let replaceString = NSMutableString(string: str)
-        let replaces = pattern.replaceMatchesInString(replaceString, options: .ReportCompletion, range: NSRange(location: 0, length: str.startIndex.distanceTo(str.endIndex)), withTemplate: replacement)
-        str = replaceString as String
-        return replaces
+        regexPattern.replaceMatchesInString(replaceString, options: .ReportCompletion, range: NSRange(location: 0, length: str.startIndex.distanceTo(str.endIndex)), withTemplate: replacement)
+        return replaceString as String
+    }
+    
+    internal func search(str: String) -> Int? {
+        if let result = regexPattern.firstMatchInString(str, options: .ReportCompletion, range: NSRange(location: 0, length: str.startIndex.distanceTo(str.endIndex))) {
+            result.range.location
+        }
+        return nil
     }
     
     public struct Match {
-        public var numberOfMatches: Int {
-            return components.count
+        let components: [(String, Range<String.Index>)]
+        
+        func subStrings() -> [String] {
+            return components.map {
+                $0.0
+            }
         }
-        public var components: [(String, Range<String.Index>)]
+        
+        func ranges() -> [Range<String.Index>] {
+            return components.map {
+                $0.1
+            }
+        }
     }
 }
 
 prefix operator <> { }
 
-prefix func <> (pattern: String) -> Regex {
+prefix func <> (pattern: String) -> Regex? {
     return Regex(pattern: pattern)
+}
+
+infix operator =~ {}
+
+func =~ (input: String, regex: Regex) -> Bool {
+    if let match = regex.search(input) where match > 0 {
+        return true
+    }
+    return false
+}
+
+func =~ (input: String, regexPatternStr: String) -> Bool {
+    if let regex = Regex(pattern: regexPatternStr) {
+        if let match = regex.search(input) where match > 0 {
+            return true
+        }
+    }
+    return false
 }
 
 extension String {
@@ -65,11 +93,11 @@ extension String {
         return regex.matchWithPattern(self)
     }
     
-    public mutating func replaceMatches(regex: Regex, withString: String) {
-        regex.replaceMatchesInString(&self, replacement: withString)
+    public func replace(regex: Regex, withString: String) -> String {
+        return regex.replaceMatchesInString(self, replacement: withString)
     }
     
-    public func contains(regex: Regex) -> Bool {
-        return true
+    public func search(regex: Regex) -> Int? {
+        return regex.search(self)
     }
 }
