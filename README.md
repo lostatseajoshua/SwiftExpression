@@ -59,7 +59,20 @@ str.search(regex) // Returns an optional Int of the location of the range of the
 
 ## Installation
 
-Cocoapods
+##Integration
+
+####CocoaPods 
+Swift - ```@available(iOS 8, *)```
+You can use [Cocoapods](http://cocoapods.org/) to install `SwiftExpression` by adding it to your `Podfile`:
+```ruby
+platform :ios, '8.0'
+use_frameworks!
+
+target 'MyApp' do
+  pod 'SwiftExpression'
+end
+```
+
 Manual
 
 ## Contributors
