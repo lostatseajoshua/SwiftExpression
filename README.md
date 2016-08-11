@@ -74,9 +74,11 @@ end
 
 #### Manually
 
-To use this library in your project manually you may:  
+To use this library in your project manually do the following.
+
 Projects: just drag Regex.swift into the project (check copy items if needed)
-2. for Workspaces, include the whole SwiftExpression.xcodeproj
+
+Workspaces: include the whole SwiftExpression.xcodeproj
 
 ## Contributors
 Joshua Alvarado - [Twitter](https://www.twitter.com/alvaradojoshua0) - [Website](http://www.strictlyswift.com)
