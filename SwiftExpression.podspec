@@ -9,5 +9,4 @@ Pod::Spec.new do |spec|
   spec.source_files = 'SwiftExpression/SwiftExpression/Regex.swift'
   spec.platform     = :ios, "8.0"
   spec.requires_arc = true
-  spec.framework    = 'SwiftExpression'
 end
