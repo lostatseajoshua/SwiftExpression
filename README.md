@@ -58,12 +58,11 @@ str.search(regex) // Returns an optional Int of the location of the range of the
 ```
 
 ## Installation
+```@available(iOS 8, *)```
 
-##Integration
-
-####CocoaPods 
-Swift - ```@available(iOS 8, *)```
+#### CocoaPods 
 You can use [Cocoapods](http://cocoapods.org/) to install `SwiftExpression` by adding it to your `Podfile`:
+
 ```ruby
 platform :ios, '8.0'
 use_frameworks!
@@ -73,7 +72,11 @@ target 'MyApp' do
 end
 ```
 
-Manual
+#### Manually
+
+To use this library in your project manually you may:  
+Projects: just drag Regex.swift into the project (check copy items if needed)
+2. for Workspaces, include the whole SwiftExpression.xcodeproj
 
 ## Contributors
 Joshua Alvarado - [Twitter](https://www.twitter.com/alvaradojoshua0) - [Website](http://www.strictlyswift.com)
