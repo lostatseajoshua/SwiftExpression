@@ -21,12 +21,8 @@ class SwiftExpressionTests: XCTestCase {
         super.tearDown()
     }
     
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measureBlock {
-            // Put the code you want to measure the time of here.
-        }
-    }
+    
+    // MARK: - Prefix test
     
     func testPrefixOperator() {
         if let regex = <>"regex" {
@@ -36,10 +32,24 @@ class SwiftExpressionTests: XCTestCase {
         }
     }
     
+    // MARK: - Infix test
+
     func testInfixOperator() {
-        XCTAssertEqual("Hello World" ~= "Hello World", true)
-        XCTAssertNotEqual("Hello World" ~= "hello world", true)
+        XCTAssertEqual("Hello World" =~ "Hello World", true)
+        XCTAssertNotEqual("Hello World" =~ "hello world", true)
+        
+        if let regex = Regex(pattern: "[A-Z]") {
+            XCTAssertTrue("ABC" =~ regex)
+        } else {
+            XCTFail("Regex failed to init")
+        }
+        
+        XCTAssertTrue("www" =~ "www")
+        
+        XCTAssertFalse("123" =~ "[a-z]")
     }
+    
+    // MARK: - Regex match test
     
     func testIntegerAndDecimalRegex() {
         let intAndDecRegexStr = "(?:\\d*\\.)?\\d+"
@@ -151,6 +161,57 @@ class SwiftExpressionTests: XCTestCase {
                     XCTFail(#function + "Test matches index greater than matches returned from Regex")
                 }
             }
+        } else {
+            XCTFail("Regex failed to init")
+        }
+    }
+    
+    func testRanges() {
+        let str = "HelloWorldH"
+        let pattern = "[A-Z]"
+        if let regex = Regex(pattern: pattern) {
+            let match = str.match(regex)
+            XCTAssertEqual(match.ranges().count, 3)
+        }
+    }
+    
+    // MARK: - Regex replace test
+    
+    func testReplacingString() {
+        let foundLetterWordRegexStr = "\\b\\w{4}\\b"
+        let testStr = "drink beer, it's very nice!"
+        if let regex = Regex(pattern: foundLetterWordRegexStr) {
+            let replacementString = testStr.replace(regex, withString: "")
+            XCTAssertEqual(replacementString, "drink , it's  !")
+        } else {
+            XCTFail("Regex failed to init")
+        }
+    }
+    
+    // MARK: - Regex replace test
+
+    func testSearchWord() {
+        let str = "HelloWorldApp"
+        if let regex = Regex(pattern: "App") {
+            XCTAssertEqual(str.search(regex), 10)
+        } else {
+            XCTFail("Regex failed to init")
+        }
+    }
+    
+    func testSearchDigit() {
+        let str = "HelloWorldApp123"
+        if let regex = Regex(pattern: "\\d") {
+            XCTAssertEqual(str.search(regex), 13)
+        } else {
+            XCTFail("Regex failed to init")
+        }
+    }
+    
+    func testFalseSearch() {
+        let str = "abcefghij"
+        if let regex = Regex(pattern: "\\d") {
+            XCTAssertNil(str.search(regex))
         } else {
             XCTFail("Regex failed to init")
         }
