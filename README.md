@@ -80,6 +80,12 @@ Projects: just drag Regex.swift into the project (check copy items if needed)
 
 Workspaces: include the whole SwiftExpression.xcodeproj
 
+## Demo
+
+Checkout this demo project that was built with SwiftExpression. It highlights text in a UITextView using regex pattern that is inputted into a UITextField!
+
+[Demo Github project](https://github.com/lostatseajoshua/SwiftTextHighlight)
+
 ## Contributors
 Joshua Alvarado - [Twitter](https://www.twitter.com/alvaradojoshua0) - [Website](http://www.strictlyswift.com)
 
