@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name         = 'SwiftExpression'
-  spec.version      = '1.0.2'
+  spec.version      = '1.2'
   spec.license      = { :type => 'MIT' }
   spec.homepage     = 'https://github.com/lostatseajoshua/SwiftExpression'
   spec.authors      = { 'Joshua Alvarado' => 'alvaradojoshua0@gmail.com' }
