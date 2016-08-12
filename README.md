@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/lostatseajoshua/SwiftExpression.svg?branch=develop)](https://travis-ci.org/lostatseajoshua/SwiftExpression)
+[![Build Status](https://travis-ci.org/lostatseajoshua/SwiftExpression.svg?branch=master)](https://travis-ci.org/lostatseajoshua/SwiftExpression)
 # SwiftExpression
 Swift Expression is a Regex framework built with Swift to make it easier to work with NSRegularExpression. The framework provides low overhead to work with pattern mathcing.
 
