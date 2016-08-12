@@ -20,7 +20,7 @@ public struct Regex {
         }
     }
     
-    func toString() -> String {
+    public func toString() -> String {
         return regexPattern.pattern
     }
     
@@ -48,15 +48,15 @@ public struct Regex {
     }
     
     public struct Match {
-        let components: [(String, Range<String.Index>)]
+        public let components: [(String, Range<String.Index>)]
         
-        func subStrings() -> [String] {
+        public func subStrings() -> [String] {
             return components.map {
                 $0.0
             }
         }
         
-        func ranges() -> [Range<String.Index>] {
+        public func ranges() -> [Range<String.Index>] {
             return components.map {
                 $0.1
             }
