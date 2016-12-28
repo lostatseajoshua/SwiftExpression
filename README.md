@@ -90,4 +90,4 @@ Checkout this demo project that was built with SwiftExpression. It highlights te
 Joshua Alvarado - [Twitter](https://www.twitter.com/alvaradojoshua0) - [Website](http://www.strictlyswift.com)
 
 ## License
-This project is released under the [MIT license](https://github.com/realm/jazzy/blob/master/LICENSE).
+This project is released under the [MIT license](https://github.com/lostatseajoshua/SwiftExpression/blob/master/LICENSE).
