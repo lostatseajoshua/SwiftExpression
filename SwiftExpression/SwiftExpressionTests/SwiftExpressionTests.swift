@@ -62,9 +62,9 @@ class SwiftExpressionTests: XCTestCase {
             XCTAssertEqual(regex.toString(), intAndDecRegexStr)
             let match = numberStr.match(regex)
             XCTAssertEqual(match.components.count, 3)
-            for (index, testMatch) in matchesTest.enumerate() {
+            for (index, testMatch) in matchesTest.enumerated() {
                 if index < match.subStrings().count {
-                    XCTAssertEqual(match.subStrings()[index].compare(testMatch, options: .LiteralSearch, range: nil, locale: nil), NSComparisonResult.OrderedSame)
+                    XCTAssertEqual(match.subStrings()[index].compare(testMatch, options: .literal, range: nil, locale: nil), ComparisonResult.orderedSame)
                 } else {
                     XCTFail(#function + "Test matches index greater than matches returned from Regex")
                 }
@@ -85,9 +85,9 @@ class SwiftExpressionTests: XCTestCase {
             XCTAssertEqual(regex.toString(), testingRegexStr)
             let match = testStr.match(regex)
             XCTAssertEqual(match.components.count, matchesTest.count)
-            for (index, testMatch) in matchesTest.enumerate() {
+            for (index, testMatch) in matchesTest.enumerated() {
                 if index < match.subStrings().count {
-                    XCTAssertEqual(match.subStrings()[index].compare(testMatch, options: .LiteralSearch, range: nil, locale: nil), NSComparisonResult.OrderedSame)
+                    XCTAssertEqual(match.subStrings()[index].compare(testMatch, options: .literal, range: nil, locale: nil), ComparisonResult.orderedSame)
                 } else {
                     XCTFail(#function + "Test matches index greater than matches returned from Regex")
                 }
@@ -108,9 +108,9 @@ class SwiftExpressionTests: XCTestCase {
             XCTAssertEqual(regex.toString(), phoneNumRegexStr)
             let match = testStr.match(regex)
             XCTAssertEqual(match.components.count, matchesTest.count)
-            for (index, testMatch) in matchesTest.enumerate() {
+            for (index, testMatch) in matchesTest.enumerated() {
                 if index < match.subStrings().count {
-                    XCTAssertEqual(match.subStrings()[index].compare(testMatch, options: .LiteralSearch, range: nil, locale: nil), NSComparisonResult.OrderedSame)
+                    XCTAssertEqual(match.subStrings()[index].compare(testMatch, options: .literal, range: nil, locale: nil), ComparisonResult.orderedSame)
                 } else {
                     XCTFail(#function + "Test matches index greater than matches returned from Regex")
                 }
@@ -131,9 +131,9 @@ class SwiftExpressionTests: XCTestCase {
             XCTAssertEqual(regex.toString(), wordsRegexStr)
             let match = testStr.match(regex)
             XCTAssertEqual(match.components.count, matchesTest.count)
-            for (index, testMatch) in matchesTest.enumerate() {
+            for (index, testMatch) in matchesTest.enumerated() {
                 if index < match.subStrings().count {
-                    XCTAssertEqual(match.subStrings()[index].compare(testMatch, options: .LiteralSearch, range: nil, locale: nil), NSComparisonResult.OrderedSame)
+                    XCTAssertEqual(match.subStrings()[index].compare(testMatch, options: .literal, range: nil, locale: nil), ComparisonResult.orderedSame)
                 } else {
                     XCTFail(#function + "Test matches index greater than matches returned from Regex")
                 }
@@ -154,9 +154,9 @@ class SwiftExpressionTests: XCTestCase {
             XCTAssertEqual(regex.toString(), foundLetterWordRegexStr)
             let match = testStr.match(regex)
             XCTAssertEqual(match.components.count, matchesTest.count)
-            for (index, testMatch) in matchesTest.enumerate() {
+            for (index, testMatch) in matchesTest.enumerated() {
                 if index < match.subStrings().count {
-                    XCTAssertEqual(match.subStrings()[index].compare(testMatch, options: .LiteralSearch, range: nil, locale: nil), NSComparisonResult.OrderedSame)
+                    XCTAssertEqual(match.subStrings()[index].compare(testMatch, options: .literal, range: nil, locale: nil), ComparisonResult.orderedSame)
                 } else {
                     XCTFail(#function + "Test matches index greater than matches returned from Regex")
                 }
