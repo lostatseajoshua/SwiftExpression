@@ -63,11 +63,11 @@ public struct Regex {
     
     /**
      Searches the string to find any match.
-     - Parameter str: the `String` to find a match in
+     - Parameter in: the `String` to find a match in
      - Returns: An optional `Int` of the location of the match
      */
-    internal func search(string str: String) -> Int? {
-        if let result = regexPattern.firstMatch(in: str, options: .reportCompletion, range: NSRange(location: 0, length: str.characters.distance(from: str.startIndex, to: str.endIndex))) {
+    internal func search(in str: String) -> Int? {
+        if let result = regexPattern.firstMatch(in: str, options: [], range: NSRange(location: 0, length: str.characters.distance(from: str.startIndex, to: str.endIndex))) {
             return result.range.location
         }
         return nil
@@ -169,7 +169,9 @@ extension String {
      - Returns: An optional `Int` of the location of the match
      */
     public func search(_ regex: Regex) -> Int? {
-        return regex.search(string: self)
+        return regex.search(in: self)
+    }
+    
     /**
      Searches the string to find a match.
      - Parameter regex: `Regex` object that holds the pattern to find matches with
