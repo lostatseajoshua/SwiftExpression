@@ -203,6 +203,7 @@ class SwiftExpressionTests: XCTestCase {
         let str = "HelloWorldApp123"
         if let regex = Regex(pattern: "\\d") {
             XCTAssertEqual(str.search(regex), 13)
+            XCTAssertTrue(str.find(regex))
         } else {
             XCTFail("Regex failed to init")
         }
@@ -212,6 +213,7 @@ class SwiftExpressionTests: XCTestCase {
         let str = "abcefghij"
         if let regex = Regex(pattern: "\\d") {
             XCTAssertNil(str.search(regex))
+            XCTAssertFalse(str.find(regex))
         } else {
             XCTFail("Regex failed to init")
         }

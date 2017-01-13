@@ -73,6 +73,15 @@ public struct Regex {
         return nil
     }
     
+    /**
+     Searches the string to find a match.
+     - Parameter in: the `String` to find a match in
+     - Returns: `true` if a match is found in the string
+     */
+    internal func find(in str: String) -> Bool {
+        return regexPattern.firstMatch(in: str, options: [], range: NSRange(location: 0, length: str.characters.distance(from: str.startIndex, to: str.endIndex))) != nil
+    }
+    
     /// The `Match` struct holds the values of a regex match from pattern matching with a string. Uses its methods to access different values of the matching result.
     public struct Match {
         /// A collection of a tuple object with a value of the substring and the range of that substring from the string it was matched in/
@@ -116,12 +125,20 @@ infix operator =~
  - returns: `true` if a pattern is found in the input string
  */
 public func =~ (input: String, regex: Regex) -> Bool {
-    return regex.search(string: input) != nil
+    return regex.find(in: input)
 }
 
-public func =~ (input: String, regexPatternStr: String) -> Bool {
-    if let regex = Regex(pattern: regexPatternStr) {
-        return regex.search(string: input) != nil
+/**
+ Find if regex pattern exists in string
+ 
+ - parameters:
+    - input: `String` to search in
+    - regexPattern: regex pattern string
+ - returns: `true` if a pattern is found in the input string
+ */
+public func =~ (input: String, regexPattern: String) -> Bool {
+    if let regex = Regex(pattern: regexPattern) {
+        return regex.find(in: input)
     }
     return false
 }
@@ -153,5 +170,12 @@ extension String {
      */
     public func search(_ regex: Regex) -> Int? {
         return regex.search(string: self)
+    /**
+     Searches the string to find a match.
+     - Parameter regex: `Regex` object that holds the pattern to find matches with
+     - Returns: `true` if a match is found
+     */
+    public func find(_ regex: Regex) -> Bool {
+        return regex.find(in: self)
     }
 }
