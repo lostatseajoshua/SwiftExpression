@@ -62,6 +62,15 @@ class SwiftExpressionTests: XCTestCase {
         let emptyPattern = ""
         XCTAssertNil(Regex(pattern: emptyPattern))
     }
+    
+    func testRegexToString() {
+        let pattern = "[a-zA-Z]"
+
+        if let regex = Regex(pattern: pattern) {
+            XCTAssertEqual(regex.toString(), pattern)
+        } else {
+            XCTFail("Failed to init regex with pattern: \(pattern)")
+        }    }
     // MARK: - Infix test
 
     func testInfixOperator() {
