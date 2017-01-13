@@ -15,6 +15,11 @@ public struct Regex {
     
     fileprivate var regexPattern: NSRegularExpression
     
+    /**
+     Initializes an instance of `Regex` object with a regular expression pattern.
+     
+     - parameter pattern: The regular expression pattern
+     */
     public init?(pattern: String) {
         do {
             self.regexPattern = try NSRegularExpression(pattern: pattern, options: [])
@@ -91,12 +96,25 @@ public struct Regex {
 
 prefix operator <>
 
+/**
+ Initializes an instance of `Regex` object with a regular expression pattern.
+ 
+ - parameter pattern: The regular expression pattern
+ */
 public prefix func <> (pattern: String) -> Regex? {
     return Regex(pattern: pattern)
 }
 
 infix operator =~
 
+/**
+ Find if regex pattern exists in string
+ 
+ - parameters:
+    - input: `String` to search in
+    - regex: `Regex` object with defined pattern
+ - returns: `true` if a pattern is found in the input string
+ */
 public func =~ (input: String, regex: Regex) -> Bool {
     return regex.search(string: input) != nil
 }
