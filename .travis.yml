@@ -9,4 +9,4 @@ xcode_sdk: iphonesimulator10.1
 xcode_project: SwiftExpression/SwiftExpression.xcodeproj
 xcode_scheme: SwiftExpression
 
-script: travis_retry xcodebuild -project SwiftExpression/SwiftExpression.xcodeproj -scheme SwiftExpression -sdk iphonesimulator -destination "platform=iOS Simulator, name=iPhone 7, OS:10.1" test | xcpretty
+script: travis_retry xcodebuild -project SwiftExpression/SwiftExpression.xcodeproj -scheme SwiftExpression -sdk iphonesimulator -destination "platform=iOS Simulator,name=iPhone 7,OS=10.1" test | xcpretty
