@@ -11,6 +11,8 @@ import XCTest
 
 class SwiftExpressionTests: XCTestCase {
     
+    let bigString = "bbbbbcccsqwerqweriuqwenfikewjrnwlierngwrieunebbbbbcccsqwerqweriuqwenfikewjrnwlierngwrieunebbbbbcccsqwerqweriuqwenfikewjrnwlierngwrieunebbbbbcccsqwerqweriuqweanfikewjrnwlierngwrieunebbbbbcccsqwerqweriuqwenfikewjrnwlierngwrieunebbbbbcccsqwerqweriuqwenfikewjrnwlierngwrieun"
+    
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -21,6 +23,30 @@ class SwiftExpressionTests: XCTestCase {
         super.tearDown()
     }
     
+    func testFindPerformance() {
+        let pattern = "a"
+
+        measure {
+            if let regex = <>pattern {
+                XCTAssertTrue(regex.find(in: self.bigString))
+            } else {
+                XCTFail("Failed to init regex with pattern: \(pattern)")
+            }
+        }
+    }
+    
+    func testMatchesPerformance() {
+        let pattern = "[a-zA-Z]"
+
+        measure {
+            if let regex = Regex(pattern: pattern) {
+                let matches = self.bigString.match(regex)
+                XCTAssertEqual(matches.components.count, 270)
+            } else {
+                XCTFail("Failed to init regex with pattern: \(pattern)")
+            }
+        }
+    }
     
     // MARK: - Prefix test
     
@@ -32,6 +58,19 @@ class SwiftExpressionTests: XCTestCase {
         }
     }
     
+    func testInvalidPattern() {
+        let emptyPattern = ""
+        XCTAssertNil(Regex(pattern: emptyPattern))
+    }
+    
+    func testRegexToString() {
+        let pattern = "[a-zA-Z]"
+
+        if let regex = Regex(pattern: pattern) {
+            XCTAssertEqual(regex.toString(), pattern)
+        } else {
+            XCTFail("Failed to init regex with pattern: \(pattern)")
+        }    }
     // MARK: - Infix test
 
     func testInfixOperator() {
@@ -47,6 +86,7 @@ class SwiftExpressionTests: XCTestCase {
         XCTAssertTrue("www" =~ "www")
         
         XCTAssertFalse("123" =~ "[a-z]")
+        XCTAssertFalse("123" =~ "")
     }
     
     // MARK: - Regex match test
@@ -181,7 +221,7 @@ class SwiftExpressionTests: XCTestCase {
         let foundLetterWordRegexStr = "\\b\\w{4}\\b"
         let testStr = "drink beer, it's very nice!"
         if let regex = Regex(pattern: foundLetterWordRegexStr) {
-            let replacementString = testStr.replace(regex, withString: "")
+            let replacementString = testStr.replace(regex, with: "")
             XCTAssertEqual(replacementString, "drink , it's  !")
         } else {
             XCTFail("Regex failed to init")
@@ -203,6 +243,7 @@ class SwiftExpressionTests: XCTestCase {
         let str = "HelloWorldApp123"
         if let regex = Regex(pattern: "\\d") {
             XCTAssertEqual(str.search(regex), 13)
+            XCTAssertTrue(str.find(regex))
         } else {
             XCTFail("Regex failed to init")
         }
@@ -212,6 +253,7 @@ class SwiftExpressionTests: XCTestCase {
         let str = "abcefghij"
         if let regex = Regex(pattern: "\\d") {
             XCTAssertNil(str.search(regex))
+            XCTAssertFalse(str.find(regex))
         } else {
             XCTFail("Regex failed to init")
         }
