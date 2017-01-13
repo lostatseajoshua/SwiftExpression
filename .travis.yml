@@ -4,9 +4,9 @@
 language: objective-c
 
 osx_image: xcode8.2
-xcode_sdk: iphonesimulator10.2
+xcode_sdk: iphonesimulator10.0
 
 xcode_project: SwiftExpression/SwiftExpression.xcodeproj
 xcode_scheme: SwiftExpression
 
-script: travis_retry xcodebuild -project SwiftExpression/SwiftExpression.xcodeproj -scheme SwiftExpression -sdk iphonesimulator -destination "OS=10.0,name=iPhone 7" test | xcpretty
+script: travis_retry xcodebuild -project SwiftExpression/SwiftExpression.xcodeproj -scheme SwiftExpression -sdk iphonesimulator -destination "name=iPhone 7" test | xcpretty
