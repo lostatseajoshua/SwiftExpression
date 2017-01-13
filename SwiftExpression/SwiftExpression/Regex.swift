@@ -52,12 +52,12 @@ public struct Regex {
     /**
      Replaces regex matches in string.
      - Parameter str: the `String` to find matches in
-     - Parameter replacement: `String` to replace in the matches
+     - Parameter with: The substitution `String` used when replacing matching
      - Returns: A new `String` with the matches replaced
      */
-    internal func replaceMatches(inString str: String, replacement: String) -> String {
+    internal func replaceMatches(in str: String, with template: String) -> String {
         let replaceString = NSMutableString(string: str)
-        regexPattern.replaceMatches(in: replaceString, options: .reportCompletion, range: NSRange(location: 0, length: str.characters.distance(from: str.startIndex, to: str.endIndex)), withTemplate: replacement)
+        regexPattern.replaceMatches(in: replaceString, options: .reportCompletion, range: NSRange(location: 0, length: str.characters.distance(from: str.startIndex, to: str.endIndex)), withTemplate: template)
         return replaceString as String
     }
     
@@ -139,11 +139,11 @@ extension String {
     /**
      Finds regex matches in the string and replaces those matches with the replacement string.
      - Parameter regex: `Regex` object that holds the pattern to find matches with
-     - Parameter withString: The replacement `String` to insert in place of the match
+     - Parameter with: The replacement `String` to insert in place of the match
      - Returns: A new `String` with the replacements applied
      */
-    public func replace(_ regex: Regex, withString: String) -> String {
-        return regex.replaceMatches(inString: self, replacement: withString)
+    public func replace(_ regex: Regex, with str: String) -> String {
+        return regex.replaceMatches(in: self, with: str)
     }
     
     /**

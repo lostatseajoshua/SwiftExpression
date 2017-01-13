@@ -181,7 +181,7 @@ class SwiftExpressionTests: XCTestCase {
         let foundLetterWordRegexStr = "\\b\\w{4}\\b"
         let testStr = "drink beer, it's very nice!"
         if let regex = Regex(pattern: foundLetterWordRegexStr) {
-            let replacementString = testStr.replace(regex, withString: "")
+            let replacementString = testStr.replace(regex, with: "")
             XCTAssertEqual(replacementString, "drink , it's  !")
         } else {
             XCTFail("Regex failed to init")
