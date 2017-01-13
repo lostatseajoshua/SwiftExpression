@@ -36,10 +36,10 @@ public struct Regex {
     
     /**
      Finds regex matches in a string.
-     - Parameter str: the `String` to find matches in
+     - Parameter in: the `String` to find matches in
      - Returns: A `Match` based on the matching result
      */
-    internal func matchWithPattern(_ str: String) -> Match {
+    internal func matches(in str: String) -> Match {
         let results = regexPattern.matches(in: str, options: .reportCompletion, range: NSRange(location: 0, length: str.characters.distance(from: str.startIndex, to: str.endIndex)))
         var components = [(String, Range<String.Index>)]()
         results.lazy.forEach {
@@ -133,7 +133,7 @@ extension String {
      - Returns: A `Match` based on the matching result
      */
     public func match(_ regex: Regex) -> Regex.Match {
-        return regex.matchWithPattern(self)
+        return regex.matches(in: self)
     }
     
     /**
