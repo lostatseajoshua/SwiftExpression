@@ -26,7 +26,7 @@ if let regex = Regex("^\\d") {
 ###### Prefix operator
 The prefix operator is used as a way to initialize a regex struct and is built on the failable initalizer.
 ```swift
-let regex = <>"^\\d" {
+if let regex = <>"^\\d" {
   // use regex object
 }
 ```
