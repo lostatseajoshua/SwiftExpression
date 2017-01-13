@@ -73,6 +73,7 @@ class SwiftExpressionTests: XCTestCase {
         XCTAssertTrue("www" =~ "www")
         
         XCTAssertFalse("123" =~ "[a-z]")
+        XCTAssertFalse("123" =~ "")
     }
     
     // MARK: - Regex match test
