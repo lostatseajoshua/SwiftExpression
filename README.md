@@ -5,6 +5,13 @@ Swift Expression is a Regex framework built with Swift to make it easier to work
 ## Motivation
 There is not a native Regex implemenation in Swift or Objective-C as there is in other languages such as javascript or ruby. This framework's goal is to make it easier to work with Regex in a "Swifty" way. The framework is built on NSRegularExpression with just easy to call methods and easy objects to work with. To feel as native as possible the Swift `String` type has been extended with new methods for Regex.
 
+## Requirements
+Xcode 8
+
+Swift 3
+
+iOS 8.0+
+
 ## Code Example
 
 ##### Create a Regex object
