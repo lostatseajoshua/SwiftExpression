@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/lostatseajoshua/SwiftExpression.svg?branch=master)](https://travis-ci.org/lostatseajoshua/SwiftExpression)
+[![Build Status](https://travis-ci.org/lostatseajoshua/SwiftExpression.svg?branch=master)](https://travis-ci.org/lostatseajoshua/SwiftExpression) [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/lostatseajoshua/SwiftExpression)
 # SwiftExpression
 Swift Expression is a Regex framework built with Swift to make it easier to work with NSRegularExpression. The framework provides low overhead to work with pattern mathcing.
 
@@ -77,13 +77,34 @@ target 'MyApp' do
 end
 ```
 
+#### Carthage
+
+You can use [Carthage](https://github.com/Carthage/Carthage) to install `SwiftExpression` by adding it to your `Cartfile`:
+
+```swift
+github "lostatseajoshua/SwiftExpression"
+```
+
+#### Swift Package Manager
+
+```swift
+import PackageDescription
+
+let package = Package(
+    name: "YourProject",
+    targets: [],
+    dependencies: [
+        .Package(url: "https://github.com/lostatseajoshua/SwiftExpression.git",
+                 majorVersion: 2),
+    ]
+)
+```
+
 #### Manually
 
 To use this library in your project manually do the following.
 
-Projects: just drag Regex.swift into the project (check copy items if needed)
-
-Workspaces: include the whole SwiftExpression.xcodeproj
+Add the SwiftExpression.framework to your project by downloading the framework from the [releases](https://github.com/lostatseajoshua/SwiftExpression/releases)
 
 ## Demo
 
