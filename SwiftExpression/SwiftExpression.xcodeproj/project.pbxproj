@@ -9,8 +9,8 @@
 /* Begin PBXBuildFile section */
 		9443011F1D4EF1C100B110CF /* SwiftExpression.h in Headers */ = {isa = PBXBuildFile; fileRef = 9443011E1D4EF1C100B110CF /* SwiftExpression.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		944301261D4EF1C100B110CF /* SwiftExpression.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9443011B1D4EF1C100B110CF /* SwiftExpression.framework */; };
-		9443012B1D4EF1C100B110CF /* SwiftExpressionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9443012A1D4EF1C100B110CF /* SwiftExpressionTests.swift */; };
 		944301361D4EF2D700B110CF /* Regex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944301351D4EF2D700B110CF /* Regex.swift */; };
+		94DE34461E28A1080079F08D /* SwiftExpressionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94DE34451E28A1080079F08D /* SwiftExpressionTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,9 +28,9 @@
 		9443011E1D4EF1C100B110CF /* SwiftExpression.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwiftExpression.h; sourceTree = "<group>"; };
 		944301201D4EF1C100B110CF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		944301251D4EF1C100B110CF /* SwiftExpressionTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftExpressionTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		9443012A1D4EF1C100B110CF /* SwiftExpressionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftExpressionTests.swift; sourceTree = "<group>"; };
 		9443012C1D4EF1C100B110CF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		944301351D4EF2D700B110CF /* Regex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Regex.swift; sourceTree = "<group>"; };
+		94DE34451E28A1080079F08D /* SwiftExpressionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftExpressionTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,7 +83,7 @@
 		944301291D4EF1C100B110CF /* SwiftExpressionTests */ = {
 			isa = PBXGroup;
 			children = (
-				9443012A1D4EF1C100B110CF /* SwiftExpressionTests.swift */,
+				94DE34451E28A1080079F08D /* SwiftExpressionTests.swift */,
 				9443012C1D4EF1C100B110CF /* Info.plist */,
 			);
 			path = SwiftExpressionTests;
@@ -223,7 +223,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9443012B1D4EF1C100B110CF /* SwiftExpressionTests.swift in Sources */,
+				94DE34461E28A1080079F08D /* SwiftExpressionTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -378,10 +378,12 @@
 		944301331D4EF1C100B110CF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = SwiftExpressionTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.joshuaalvarado.SwiftExpressionTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -389,6 +391,7 @@
 		944301341D4EF1C100B110CF /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = SwiftExpressionTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.joshuaalvarado.SwiftExpressionTests;
