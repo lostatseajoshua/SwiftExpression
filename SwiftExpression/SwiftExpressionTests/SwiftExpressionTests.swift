@@ -58,6 +58,10 @@ class SwiftExpressionTests: XCTestCase {
         }
     }
     
+    func testInvalidPattern() {
+        let emptyPattern = ""
+        XCTAssertNil(Regex(pattern: emptyPattern))
+    }
     // MARK: - Infix test
 
     func testInfixOperator() {
