@@ -39,7 +39,7 @@ public struct Regex {
      - Parameter in: the `String` to find matches in
      - Returns: A `Match` based on the matching result
      */
-    internal func matches(in str: String) -> Match {
+    public func matches(in str: String) -> Match {
         let results = regexPattern.matches(in: str, options: .reportCompletion, range: NSRange(location: 0, length: str.characters.distance(from: str.startIndex, to: str.endIndex)))
         var components = [(String, Range<String.Index>)]()
         results.lazy.forEach {
@@ -55,7 +55,7 @@ public struct Regex {
      - Parameter with: The substitution `String` used when replacing matching
      - Returns: A new `String` with the matches replaced
      */
-    internal func replaceMatches(in str: String, with template: String) -> String {
+    public func replaceMatches(in str: String, with template: String) -> String {
         let replaceString = NSMutableString(string: str)
         regexPattern.replaceMatches(in: replaceString, options: .reportCompletion, range: NSRange(location: 0, length: str.characters.distance(from: str.startIndex, to: str.endIndex)), withTemplate: template)
         return replaceString as String
@@ -66,7 +66,7 @@ public struct Regex {
      - Parameter in: the `String` to find a match in
      - Returns: An optional `Int` of the location of the match
      */
-    internal func search(in str: String) -> Int? {
+    public func search(in str: String) -> Int? {
         if let result = regexPattern.firstMatch(in: str, options: [], range: NSRange(location: 0, length: str.characters.distance(from: str.startIndex, to: str.endIndex))) {
             return result.range.location
         }
@@ -78,7 +78,7 @@ public struct Regex {
      - Parameter in: the `String` to find a match in
      - Returns: `true` if a match is found in the string
      */
-    internal func find(in str: String) -> Bool {
+    public func find(in str: String) -> Bool {
         return regexPattern.firstMatch(in: str, options: [], range: NSRange(location: 0, length: str.characters.distance(from: str.startIndex, to: str.endIndex))) != nil
     }
     
