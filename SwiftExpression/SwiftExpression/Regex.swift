@@ -27,7 +27,7 @@ public struct Regex {
             return nil
         }
     }
-    
+
     /// Regex pattern used to match.
     /// - Returns: `String` format of pattern
     public func toString() -> String {
@@ -43,8 +43,9 @@ public struct Regex {
         let results = regexPattern.matches(in: str, options: .reportCompletion, range: NSRange(location: 0, length: str.characters.distance(from: str.startIndex, to: str.endIndex)))
         var components = [(String, Range<String.Index>)]()
         results.lazy.forEach {
-            let stringRange = str.characters.index(str.startIndex, offsetBy: $0.range.location)..<str.characters.index(str.startIndex, offsetBy: $0.range.location + $0.range.length)
-            components.append(str.substring(with: stringRange), stringRange)
+            if let stringRange = str.range(from: $0.range) {
+                components.append((str.substring(with: stringRange), stringRange))
+            }
         }
         return Match(components: components)
     }
@@ -179,5 +180,16 @@ extension String {
      */
     public func find(_ regex: Regex) -> Bool {
         return regex.find(in: self)
+    }
+    
+    // https://stackoverflow.com/a/40250494/6062
+    public func range(from nsRange: NSRange) -> Range<String.Index>? {
+        guard
+            let from16 = utf16.index(utf16.startIndex, offsetBy: nsRange.location, limitedBy: utf16.endIndex),
+            let to16 = utf16.index(from16, offsetBy: nsRange.length, limitedBy: utf16.endIndex),
+            let from = String.Index(from16, within: self),
+            let to = String.Index(to16, within: self)
+            else { return nil }
+        return from ..< to
     }
 }

@@ -22,6 +22,22 @@ class SwiftExpressionTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
     }
+
+
+    // ranges can have subtle problems when dealing with extended UTF-8 codepoints
+    // the text for this test has the 'fire' emoji in it. The substring will only
+    // be extracted properly if the Regex is taking these extended codepoints into
+    // account properly when calculating the substring ranges
+    //
+    // https://stackoverflow.com/a/40250494/6062 has more information on this problem
+    func testMatchWithExtendedUTF() {
+        let text = "hello \u{1F525} world."
+        let regex = Regex(pattern:"world")!
+        let matches = text.match(regex)
+        
+        XCTAssertTrue(matches.subStrings().count == 1)
+        XCTAssertTrue(matches.subStrings().first == "world")
+    }
     
     func testFindPerformance() {
         let pattern = "a"
