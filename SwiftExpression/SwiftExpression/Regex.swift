@@ -20,9 +20,9 @@ public struct Regex {
      
      - parameter pattern: The regular expression pattern
      */
-    public init?(pattern: String) {
+    public init?(pattern: String, options: NSRegularExpression.Options = []) {
         do {
-            self.regexPattern = try NSRegularExpression(pattern: pattern, options: [])
+            self.regexPattern = try NSRegularExpression(pattern: pattern, options: options)
         } catch {
             return nil
         }
