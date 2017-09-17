@@ -46,7 +46,7 @@ if str ~= regexPatternStr {
 ```
 
 ##### String extension methods
-Get matches in string.
+Match
 ```swift
 let match = str.match(regex) // Returns a Regex.Match struct
 match.components // Returns a collection of tuples that are the substring match and range of the match [(String, Range<String.Index>)]
@@ -57,11 +57,6 @@ match.ranges() // Returns a collection of ranges of the matches [Range<String.In
 Replace
 ```swift
 str.replace(regex, with: replaceStr) // Returns a new string with matches replaced with replacement string
-```
-
-Search
-```swift
-str.search(regex) // Returns an optional Int of the location of the range of the first match found in the string
 ```
 
 Find
