@@ -9,4 +9,5 @@ Pod::Spec.new do |spec|
   spec.source_files = 'Sources/Regex.swift'
   spec.platform     = :ios, "8.0"
   spec.requires_arc = true
+  spec.swift_versions = '4.2'
 end
