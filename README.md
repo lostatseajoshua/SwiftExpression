@@ -6,9 +6,9 @@ Swift Expression is a Regex framework built with Swift to make it easier to work
 There is not a native Regex implemenation in Swift or Objective-C as there is in other languages such as javascript or ruby. This framework's goal is to make it easier to work with Regex in a "Swifty" way. The framework is built on NSRegularExpression with just easy to call methods and easy objects to work with. To feel as native as possible the Swift `String` type has been extended with new methods for Regex.
 
 ## Requirements
-Xcode 8
+Xcode 10.2
 
-Swift 3
+Swift 4.2
 
 iOS 8.0+
 
@@ -67,7 +67,7 @@ str.find(regex) // Returns true if a match exists in the string
 ## Installation
 ```@available(iOS 8, *)```
 
-#### CocoaPods 
+#### CocoaPods
 You can use [Cocoapods](http://cocoapods.org/) to install `SwiftExpression` by adding it to your `Podfile`:
 
 ```ruby
