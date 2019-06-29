@@ -31,7 +31,12 @@ class SwiftExpressionTests: XCTestCase {
         (testMatchWithEmoji, "testMatchWithEmoji"),
     ]
 
-    let bigString = "bbbbbcccsqwerqweriuqwenfikewjrnwlierngwrieunebbbbbcccsqwerqweriuqwenfikewjrnwlierngwrieunebbbbbcccsqwerqweriuqwenfikewjrnwlierngwrieunebbbbbcccsqwerqweriuqweanfikewjrnwlierngwrieunebbbbbcccsqwerqweriuqwenfikewjrnwlierngwrieunebbbbbcccsqwerqweriuqwenfikewjrnwlierngwrieun"
+    let bigString = """
+                    bbbbbcccsqwerqweriuqwenfikewjrnwlierngwrieunebbbbbcccsqwerqweriuqwenfikewjrnwlier
+                    ngwrieunebbbbbcccsqwerqweriuqwenfikewjrnwlierngwrieunebbbbbcccsqwerqweriuqweanfik
+                    ewjrnwlierngwrieunebbbbbcccsqwerqweriuqwenfikewjrnwlierngwrieunebbbbbcccsqwerqwer
+                    iuqwenfikewjrnwlierngwrieunalkfjasdkfjas;dklfjasdlkfajsdlfjas;dfkjasldjalkjs;alkf
+                    """
 
     override func setUp() {
         super.setUp()
@@ -61,7 +66,7 @@ class SwiftExpressionTests: XCTestCase {
         measure {
             if let regex = Regex(pattern: pattern) {
                 let matches = self.bigString.match(regex)
-                XCTAssertEqual(matches.components.count, 270)
+                XCTAssertEqual(matches.components.count, 321)
             } else {
                 XCTFail("Failed to init regex with pattern: \(pattern)")
             }
