@@ -26,6 +26,14 @@ public struct Regex {
         /// A collection of a tuple object with a value of the substring and the range of that substring from the string it was matched in/
         public let components: [(String, Range<String.Index>)]
 
+        public init() {
+          components = [(String, Range<String.Index>)]()
+        }
+
+        public init(components: [(String, Range<String.Index>)]) {
+          self.components = components
+        }
+
         ///  A collection of just the substrings that were found in the match.
         public func subStrings() -> [String] {
             return components.map {
